@@ -1,7 +1,13 @@
 package com.example.finalsprintsemester4.games;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Games {
-    private int id;
+    @Id
+    @SequenceGenerator(name = "games_sequence", sequenceName = "games_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_sequence")
+    private Long id;
     private String title;
     private String developer;
     private String releaseDate;
@@ -9,7 +15,7 @@ public class Games {
     public Games() {
     }
 
-    public Games(int id, String title, String developer, String releaseDate) {
+    public Games(Long id, String title, String developer, String releaseDate) {
         this.id = id;
         this.title = title;
         this.developer = developer;
@@ -22,11 +28,11 @@ public class Games {
         this.releaseDate = releaseDate;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
