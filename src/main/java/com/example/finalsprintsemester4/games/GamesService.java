@@ -1,11 +1,16 @@
 package com.example.finalsprintsemester4.games;
 
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class GamesService {
@@ -25,26 +30,30 @@ public class GamesService {
     // POST logic
     public void addNewGame(Games games) {
         System.out.println("Successfully added new game!!!");
+        gamesRepository.save(games);
+
     }
 
     // PUT logic
     @Transactional
-    public void updateGame(Long id, String title, String developer, String releaseDate){
-        Games games = gamesRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException(
-                        "You nerd, that id " + id + "ain't in this table"
-                ));
+    public void updateGame(@PathVariable String id, @RequestBody Games games, HttpServletResponse response) {
+        Optional<Games> returnValue = gamesRepository.findById(Long.parseLong(id));
+        Games gamesToUpdate;
 
-        if (title != null && title.length() > 0 && !Objects.equals(games.getTitle(), title)) {
-            games.setTitle(title);
-        }
+        if (returnValue.isPresent()) {
+            gamesToUpdate = returnValue.get();
 
-        if (developer != null && developer.length() > 0 && !Objects.equals(games.getDeveloper(), developer)) {
-            games.setDeveloper(developer);
-        }
+            gamesToUpdate.setTitle(games.getTitle());
+            gamesToUpdate.setDeveloper(games.getTitle());
+            gamesToUpdate.setReleaseDate(games.getTitle());
 
-        if (releaseDate != null && releaseDate.length() > 0 && !Objects.equals(games.getReleaseDate(), releaseDate)) {
-            games.setReleaseDate(releaseDate);
+            gamesRepository.save(gamesToUpdate);
+        } else {
+            try {
+                response.sendError(404, "City with id: " + games.getId() + " not found.");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

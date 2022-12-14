@@ -1,6 +1,6 @@
 package com.example.finalsprintsemester4.games;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Games {
