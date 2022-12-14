@@ -5,27 +5,27 @@ import javax.persistence.*;
 @Entity
 public class Games {
     @Id
-    @SequenceGenerator(name = "games_sequence", sequenceName = "games_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "games_sequence", sequenceName = "games_sequence", allocationSize = 1, initialValue=1001)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "games_sequence")
     private Long id;
     private String title;
     private String developer;
-    private String releaseDate;
+    private String release_date;
 
     public Games() {
     }
 
-    public Games(Long id, String title, String developer, String releaseDate) {
+    public Games(Long id, String title, String developer, String release_date) {
         this.id = id;
         this.title = title;
         this.developer = developer;
-        this.releaseDate = releaseDate;
+        this.release_date = release_date;
     }
 
-    public Games(String title, String developer, String releaseDate) {
+    public Games(String title, String developer, String release_date) {
         this.title = title;
         this.developer = developer;
-        this.releaseDate = releaseDate;
+        this.release_date = release_date;
     }
 
     public Long getId() {
@@ -52,12 +52,12 @@ public class Games {
         this.developer = developer;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getRelease_date() {
+        return release_date;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Games {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", developer='" + developer + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
+                ", release_date='" + release_date + '\'' +
                 '}';
     }
 }
