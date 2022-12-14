@@ -27,11 +27,11 @@ public class GamesController {
 
     @PutMapping("/games/{id}")
     public void updateGame(
-            @PathVariable Long id,
+            @PathVariable ("id") Long id,
             @RequestParam(required = false) String title,
             @RequestParam(required = false) String developer,
-            @RequestParam(required = false) String releaseDate) {
-        gamesService.updateGame(id, title, developer, releaseDate);
+            @RequestParam(required = false) String release_date) {
+        gamesService.updateGame(id, title, developer, release_date);
     }
 
     @DeleteMapping("/games/{id}")
