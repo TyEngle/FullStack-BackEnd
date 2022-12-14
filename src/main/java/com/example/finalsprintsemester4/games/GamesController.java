@@ -3,6 +3,7 @@ package com.example.finalsprintsemester4.games;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -27,11 +28,9 @@ public class GamesController {
 
     @PutMapping("/games/{id}")
     public void updateGame(
-            @PathVariable ("id") Long id,
-            @RequestParam(required = false) String title,
-            @RequestParam(required = false) String developer,
-            @RequestParam(required = false) String release_date) {
-        gamesService.updateGame(id, title, developer, release_date);
+            @PathVariable ("id") String id, @RequestBody Games games, HttpServletResponse response
+) {
+        gamesService.updateGame(id, games, response);
     }
 
     @DeleteMapping("/games/{id}")

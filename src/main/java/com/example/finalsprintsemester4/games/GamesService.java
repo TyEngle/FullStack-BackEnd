@@ -44,8 +44,8 @@ public class GamesService {
             gamesToUpdate = returnValue.get();
 
             gamesToUpdate.setTitle(games.getTitle());
-            gamesToUpdate.setDeveloper(games.getTitle());
-            gamesToUpdate.setRelease_date(games.getTitle());
+            gamesToUpdate.setDeveloper(games.getDeveloper());
+            gamesToUpdate.setRelease_date(games.getRelease_date());
 
             gamesRepository.save(gamesToUpdate);
         } else {
