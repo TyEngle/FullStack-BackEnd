@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,6 +25,13 @@ public class GamesService {
     public List<Games> getGames(){
         return gamesRepository.findAll();
     }
+
+    public Optional<Games> getGamesById(Long id){
+        return gamesRepository.findById(id);
+    }
+
+//    public Optional<Games> getGamesByTitle(String title) { return gamesRepository.findByTitle(title); }
+
 
     // POST logic
     public void addNewGame(Games games) {

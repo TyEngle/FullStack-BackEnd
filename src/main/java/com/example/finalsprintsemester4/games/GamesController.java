@@ -5,8 +5,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class GamesController {
 
     private final GamesService gamesService;
@@ -20,6 +22,17 @@ public class GamesController {
     public List<Games> getGames(){
         return gamesService.getGames();
     }
+
+    @GetMapping("/games/{id}")
+    public Optional<Games> getGamesById(@PathVariable Long id){
+        return gamesService.getGamesById(id);
+    }
+
+//    @GetMapping("/games/{title}")
+//    public Optional<Games> getGamesByTitle(@PathVariable String title){
+//        Optional<Games> games = gamesService.getGamesByTitle(title);
+//        return gamesService.getGamesByTitle(title);
+//    }
 
     @PostMapping("/games")
     public void addNewGame(@RequestBody Games games){

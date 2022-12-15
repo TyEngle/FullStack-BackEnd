@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface GamesRepository extends JpaRepository<Games, Long> {
 
+    Optional<Games> findByTitle(String title);
 }
