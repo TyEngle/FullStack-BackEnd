@@ -30,9 +30,6 @@ public class GamesService {
         return gamesRepository.findById(id);
     }
 
-//    public Optional<Games> getGamesByTitle(String title) { return gamesRepository.findByTitle(title); }
-
-
     // POST logic
     public void addNewGame(Games games) {
         System.out.println("Successfully added new game!!!");

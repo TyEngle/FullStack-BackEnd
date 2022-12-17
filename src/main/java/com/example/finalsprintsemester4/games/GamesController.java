@@ -28,12 +28,6 @@ public class GamesController {
         return gamesService.getGamesById(id);
     }
 
-//    @GetMapping("/games/{title}")
-//    public Optional<Games> getGamesByTitle(@PathVariable String title){
-//        Optional<Games> games = gamesService.getGamesByTitle(title);
-//        return gamesService.getGamesByTitle(title);
-//    }
-
     @PostMapping("/games")
     public void addNewGame(@RequestBody Games games){
         gamesService.addNewGame(games);
