@@ -35,14 +35,12 @@ public class GamesController {
 
     @PutMapping("/games/{id}")
     public void updateGame(
-            @PathVariable ("id") String id, @RequestBody Games games, HttpServletResponse response
-) {
+            @PathVariable ("id") String id, @RequestBody Games games, HttpServletResponse response)
+    {
         gamesService.updateGame(id, games, response);
     }
-
     @DeleteMapping("/games/{id}")
     public void deleteGame(@PathVariable Long id){
         gamesService.deleteGame(id);
     }
-
 }
